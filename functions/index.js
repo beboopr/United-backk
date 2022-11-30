@@ -1,17 +1,16 @@
-import { getALlitems, createItems, deleteitems } from "items.js";
+import { getAllItems,  getItem, createItems, updateItems, deleteItem } from "./src/routes.js";
 import functions from "firebase-functions";
 import express from "express";
-// import cors from "cors";
-import items from "items.js"
+import cors from "cors";
 
-const PORT = 3030
 const app = express();
 app.use(cors());
+app.use(express.json())
 
-app.get('/items', getALlitems);
-app.add('/items', createItems);
-// app.delete('/items/:itemsId', deleteitems);
-
-app.listen(PORT, () => console.log(`Listening on http:localhost:${PORT}`));
+app.get('/items', getAllItems)
+app.get('/items/:uid', getItem)
+app.post('/items', createItems)
+app.patch('/items/:uid', updateItems)
+app.delete('/items/:uid', deleteItem)
 
 export const api = functions.https.onRequest(app);
