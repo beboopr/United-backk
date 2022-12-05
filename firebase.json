@@ -24,7 +24,7 @@
   "emulators": {
     "functions": {
     "host": "localhost",
-    "port": "4050"
+    "port": "4040"
     }
   }
 }
