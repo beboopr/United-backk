@@ -1,4 +1,3 @@
-import { ObjectBuilder } from "firebase-functions/v1/storage";
 import dbConnect from "../dbConnect.js";
 
 //Get AllItems / WORKING
@@ -52,7 +51,7 @@ export async function updateItems(req, res) {
     .then((doc) => {
   // res.status(201)
   // res.send({ success: true, message: "updated items: " + doc.data() });
-    res.json("item is updated")
+    res.send({ success: true, message: "item is updated"})
   })
     .catch((err) => res.status(500).send({ success: false, message: err }));
 }
@@ -61,7 +60,7 @@ export async function updateItems(req, res) {
 export function deleteItem(req, res) {
   const db = dbConnect();
   const { uid } = req.params;
-  db.collection("items").doc(uid).delete().then((doc) =>
+  db.collection("items").doc(uid).delete().then(() =>
       res.status(201).send({ success: true, message: "Item deleted:" })
     )
     .catch((err) => res.status(500).send({ success: false, message: err }));

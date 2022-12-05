@@ -1,4 +1,4 @@
-import { getAllItems,  getItem, createItems, updateItems, deleteItem } from "./src/routes.js";
+import { getAllItems,  getItem, createItems, updateItems } from "./src/routes.js";
 import functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
@@ -11,6 +11,6 @@ app.get('/items', getAllItems)
 app.get('/items/:uid', getItem)
 app.post('/items', createItems)
 app.patch('/items/:uid', updateItems)
-app.delete('/items/:uid', deleteItem)
+// app.delete('/items/:uid', deleteItem)
 
 export const api = functions.https.onRequest(app);
