@@ -3,14 +3,10 @@ import dbConnect from "../dbConnect.js";
 //Get AllItems / WORKING
 export async function getAllItems(req, res) {
   const db = dbConnect();
-  const collection = await db
-    .collection("items")
-    .get()
-    .then((collection) => {
-      const items = collection.docs.map((doc) => ({
-        ...doc.data(),
-        itemsId: doc.id,
-      }));
+  const collection = await db.collection("items").get()
+    .then((collection) => { // creates a promise
+      //cretes a variable to map through the collection to get all data 
+      const items = collection.docs.map((doc) => ({...doc.data(),itemsId: doc.id,}));
       res.send(items);
     })
     .catch((err) => res.status(500).send(err));
@@ -18,7 +14,7 @@ export async function getAllItems(req, res) {
 
 //Get items // WORKING
 export async function getItem(req, res) {
-  const { uid } = req.params;
+  const { uid } = req.params; // im retreving the parameters with the url
   const db = dbConnect();
   const doc = await db.collection("items").doc(uid).get();
   res.status(202).send({ success: true, message: doc.data() });
@@ -40,7 +36,7 @@ export function createItems(req, res) {
     .catch((err) => res.status(500).send({ success: false, message: err }));
 }
 
-//Patch items // WORKING
+//Patch items //  WORK IN PROGRESS
 export async function updateItems(req, res) {
   const { uid } = req.params;
   const db = dbConnect();
@@ -56,7 +52,7 @@ export async function updateItems(req, res) {
     .catch((err) => res.status(500).send({ success: false, message: err }));
 }
 
-// Delete item // NOT WORKING
+// Delete item // WORK IN PROGRESS
 export function deleteItem(req, res) {
   const db = dbConnect();
   const { uid } = req.params;
