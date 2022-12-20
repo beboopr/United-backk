@@ -2,6 +2,7 @@ import { getAllItems,  getItem, createItems, updateItems } from "./src/routes.js
 import functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
+// import jwt from 'jsonwebtoken'; installed with npm 
 // import { userLogin, addNewUser, updateUser} from "./src/users.js";
 // import { isUserReallyUser } from "./src/middleware.js";
 
